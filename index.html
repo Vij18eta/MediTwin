@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediTwin | Overview</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-page="overview" data-patient-id="P5">
+  <div class="app-shell">
+    <header class="panel app-header">
+      <div class="brand-block">
+        <div class="brand-mark">M</div>
+        <div>
+          <p class="section-kicker">MediTwin Monitoring System</p>
+          
+          <p id="headerPatientContext" class="header-context">Loading patient context...</p>
+        </div>
+      </div>
+
+      <nav id="siteNav" class="site-nav" aria-label="Primary navigation"></nav>
+
+      <div class="header-tools">
+        <button class="icon-button" type="button" aria-label="Notifications">
+          <span class="icon-glyph">!</span>
+          <span id="notificationCount" class="icon-count">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="app-layout">
+      <section class="main-column">
+        <article id="heroPanel" class="panel hero-panel">
+          <div class="hero-top">
+            <div>
+              <p id="heroEyebrow" class="section-kicker">Priority Patient</p>
+              <h2 id="heroName">Loading...</h2>
+              <p id="heroMeta" class="hero-meta">Patient identity and context</p>
+            </div>
+
+            <div class="hero-status-block">
+              <span id="heroStatusPill" class="status-pill status-stable">Stable</span>
+              <span class="twin-pill">
+                <span class="live-dot"></span>
+                Digital Twin Active
+              </span>
+            </div>
+          </div>
+
+          <div class="hero-grid">
+            <div class="hero-metric emphasis-card">
+              <span class="card-label">emergency?</span>
+              <strong id="heroCondition">Sepsis Risk</strong>
+              <p id="heroPrediction">AI prediction is loading.</p>
+            </div>
+
+            <div class="hero-metric">
+              <span class="card-label">Is there danger?</span>
+              <strong id="heroRiskLabel">Stable</strong>
+              <p id="heroDanger">No active risk signal.</p>
+            </div>
+
+            <div class="hero-metric action-card">
+              <span class="card-label">What should I do?</span>
+              <strong id="heroActionLead">Continue monitoring</strong>
+              <div class="risk-score-row">
+                <span id="heroRiskScore" class="risk-score-text">0 / 100</span>
+                <span id="heroRiskPercent" class="risk-percent-text">0%</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel vitals-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Vitals</p>
+              <h3>Live vital signs</h3>
+            </div>
+          </div>
+
+          <div class="vitals-grid">
+            <div class="vital-card">
+              <span class="card-label">Heart Rate</span>
+              <strong id="heartRateValue">-- bpm</strong>
+              <p id="heartRateState">Waiting for stream.</p>
+            </div>
+
+            <div class="vital-card">
+              <span class="card-label">SpO2</span>
+              <strong id="spo2Value">--%</strong>
+              <p id="spo2State">Waiting for stream.</p>
+            </div>
+
+            <div class="vital-card">
+              <span class="card-label">Temperature</span>
+              <strong id="temperatureValue">-- C</strong>
+              <p id="temperatureState">Waiting for stream.</p>
+            </div>
+          </div>
+        </article>
+
+        <div class="content-grid">
+          <article class="panel diagnostics-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">AI Diagnostics</p>
+                <h3>Intelligent clinical support</h3>
+              </div>
+            </div>
+
+            <div class="diagnostics-grid">
+              <div class="diag-card">
+                <span class="card-label">AI Prediction</span>
+                <strong id="diagnosticPrediction">Loading</strong>
+              </div>
+
+              <div class="diag-card">
+                <span class="card-label">Risk Level</span>
+                <strong id="diagnosticRisk">Stable</strong>
+              </div>
+
+              <div class="diag-card">
+                <span class="card-label">Recommendation</span>
+                <strong id="diagnosticRecommendation">Loading</strong>
+              </div>
+            </div>
+
+            <div class="why-block">
+              <p class="section-kicker">Why the AI decided this</p>
+              <ul id="diagnosticWhy" class="why-list"></ul>
+            </div>
+          </article>
+
+          <article class="panel graph-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">Trend + Anomaly</p>
+                <h3>SpO2 and heart rate</h3>
+              </div>
+            </div>
+
+            <div class="graph-legend">
+              <span><span class="legend-dot spo2-dot"></span>SpO2 trend</span>
+              <span><span class="legend-dot hr-dot"></span>Heart rate trend</span>
+              <span><span class="legend-dot anomaly-dot"></span>Anomaly marker</span>
+            </div>
+
+            <svg id="trendGraph" class="trend-graph" viewBox="0 0 620 300" preserveAspectRatio="none" aria-label="Trend graph"></svg>
+            <p id="graphCaption" class="graph-caption">Normalized live trend for the selected patient.</p>
+          </article>
+        </div>
+
+        <article id="alertPanel" class="panel alert-panel" hidden>
+          <div class="alert-header">
+            <span class="alert-badge">Alert</span>
+            <span id="alertTime" class="alert-time">Just now</span>
+          </div>
+          <strong id="alertMessage">No alert</strong>
+          <p id="alertSupportText">The system will only show this section when a trigger is active.</p>
+        </article>
+      </section>
+
+      <aside class="sidebar">
+        <article class="panel system-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">System Status</p>
+              <h3>Multi-patient digital twins</h3>
+            </div>
+            <span class="tag">6 twins active</span>
+          </div>
+
+          <div id="statusSummary" class="status-summary"></div>
+          <p id="priorityMessage" class="priority-note">Calculating critical priority...</p>
+
+          <div class="demo-actions">
+           
+          </div>
+        </article>
+
+        <article class="panel directory-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Patient Navigation</p>
+              <h3>Separate patient pages</h3>
+            </div>
+          </div>
+
+          <div id="patientDirectory" class="patient-directory"></div>
+        </article>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
